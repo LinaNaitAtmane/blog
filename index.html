@@ -6,111 +6,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nait atmane Lina </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-
     </style>
 </head>
 
 <body>
-    <!-- La premiere section est dediee pour la barre d accueil en gris et -->
-    <section class="top-page">
-        <header>
-            <div class="logo">NAIT ATMANE LINA</div>
-        </header>
-        <main>
-            <nav>
-                <a href="#formation.html">formation</a>
-                <a href="#projets.html">projets </a>
-                <a href="#competences.html">competences technique </a>
-                <a href="#whoiam.html" class="btn-white">who i am</a>
-            </nav>
-        </main>
-        <footer>
+    <header class="top-page">
 
-        </footer>
+        <div class="logo">NAIT ATMANE LINA</div>
 
-    </section>
-    <section id="whoiam.html" class="page1">
-        <header>
+
+        <nav>
+            <ul>
+                <li><a href="#formation.html">formation</a></li>
+                <li><a href="#projets.html">projets </a></li>
+                <li><a href="#competences.html">competences technique </a></li>
+                <li><a href="#whoiam.html" class="btn-white">who i am</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="whoiam.html" class="page1">
             <h2> WHO I AM </h2>
-        </header>
-        <main>
             <p> Étudiante passionnée d’informatique et fascinée par les défis </p>
             <p> technologiques, je suis prête à plonger dans l’univers du code et à </p>
             <p> transformer des idées créatives en solutions innovantes. Mon objectif est </p>
             <p> de combiner rigueur mathématique et céativité pour exceller dans le domaine de l’informatique </p>
-
-
-        </main>
-
-    </section>
-    <div id="competences.html" class="grid">
+        </section>
         <h1> competences</h1>
-        <article class="card">
-            <div class="card__content">
-                <p class="premiertitre">langage informatique</p>
-                <h3 class="deuxiemetitre">metrise de langage C.</h3>
-            </div>
-            <button class="fab" aria-label="En savoir plus">+</button>
+        <section id="competences.html" class="grid">
+            <article class="card">
+                <figure><img class="card__thumb" src="./image/Screenshot 2025-10-16 164729.png" alt="Aperçu projet">
+                </figure>
+                <section class="card__content">
+                    <p class="premiertitre">langage informatique</p>
+                    <h3 class="deuxiemetitre">maitrise de langage C.</h3>
+                </section>
+                <button class="fab" aria-label="En savoir plus">+</button>
+            </article>
+            <article class="card">
+                <figure>
+                    <img class="card__thumb" src="./image/python.svg" alt="Aperçu projet">
+                </figure>
+                <section class="card__content">
+                    <p class="premiertitre">langage informatique</p>
+                    <h3 class="deuxiemetitre">maitrise de langage python.</h3>
+                </section>
+                <button class="fab" aria-label="En savoir plus">+</button>
+            </article>
+            <article class="card">
+                <figure>
+                    <img class="card__thumb" src="./image/Power-BI-Logo.png" alt="Aperçu projet">
+                </figure>
+                <section class="card__content">
+                    <p class="premiertitre">logiciel</p>
+                    <h3 class="deuxiemetitre">power BI.</h3>
+                </section>
+                <button class="fab" aria-label="En savoir plus">+</button>
+            </article>
+            <article class="card">
+                <figure>
+                    <img class="card__thumb" src="./image/Microsoft-Apps.webp" alt="Aperçu projet">
+                </figure>
+                <section class="card__content">
+                    <p class="premiertitre">bureatique</p>
+                    <h3 class="deuxiemetitre">word,excel,power pont.</h3>
+                </section>
+                <button class="fab" aria-label="En savoir plus">+</button>
+
+        </section>
+
+
         </article>
-        <article class="card">
-            <div class="card__content">
-                <p class="premiertitre">langage informatique</p>
-                <h3 class="deuxiemetitre">metrise de langage python.</h3>
-            </div>
-            <button class="fab" aria-label="En savoir plus">+</button>
-        </article>
-        <article class="card">
-            <div class="card__content">
-                <p class="premiertitre">logiciel</p>
-                <h3 class="deuxiemetitre">power BI.</h3>
-            </div>
-            <button class="fab" aria-label="En savoir plus">+</button>
-        </article>
-        <article class="card">
-            <div class="card__content">
-                <p class="premiertitre">bureatique</p>
-                <h3 class="deuxiemetitre">word,excel,power pont.</h3>
-            </div>
-            <button class="fab" aria-label="En savoir plus">+</button>
-            <!-- Boutons navigation -->
-            <div class="carousel-buttons">
-                <button onclick="scrollCarousel(-1)">&#10094;</button>
-                <button onclick="scrollCarousel(1)">&#10095;</button>
-            </div>
-    </div>
-    </article>
-    <div id="projets.html" class="projet">
         <h1> projets</h1>
-        <article class="card1">
-            <div class="card1__content">
-                <p class="premiertitre">creation de site</p>
-                <h3 class="deuxiemetitre">portfolio</h3>
-            </div>
-            <button class="fab" aria-label="En savoir plus">+</button>
+        <section id="projets.html" class="projet">
+
+            <article class="card1">
+                <section class="card1__content">
+                    <p class="premiertitre">creation de site</p>
+                    <h3 class="deuxiemetitre">portfolio</h3>
+                </section>
+                <button class="fab" aria-label="En savoir plus">+</button>
+            </article>
+            <article class="card1">
+                <section class="card1__content">
+                    <p class="premiertitre">creation d un convertisseur </p>
+                    <h3 class="deuxiemetitre">creation d un convertisseur de bases </h3>
+                </section>
+                <button class="fab" aria-label="En savoir plus">+</button>
+            </article>
+            <article class="card1">
+                <section class="card1__content">
+                    <p class="premiertitre">creation d une calculatrice </p>
+                    <h3 class="deuxiemetitre">calculatrice numerique</h3>
+                </section>
+                <button class="fab" aria-label="En savoir plus">+</button>
+            </article>
+
+        </section>
         </article>
-        <article class="card1">
-            <div class="card1__content">
-                <p class="premiertitre">creation d un convertisseur </p>
-                <h3 class="deuxiemetitre">creation d un convertisseur de bases </h3>
-            </div>
-            <button class="fab" aria-label="En savoir plus">+</button>
-        </article>
-        <article class="card1">
-            <div class="card1__content">
-                <p class="premiertitre">creation d une calculatrice </p>
-                <h3 class="deuxiemetitre">calculatrice numerique</h3>
-            </div>
-            <button class="fab" aria-label="En savoir plus">+</button>
-        </article>
-        <button class="fab" aria-label="En savoir plus">+</button>
-        <!-- Boutons navigation -->
-        <div class="carousel-buttons">
-            <button onclick="scrollCarousel(-1)">&#10094;</button>
-            <button onclick="scrollCarousel(1)">&#10095;</button>
-        </div>
-    </div>
-    </article>
+    </main>
+    <footer role="contentinfo" aria-label="Pied de page">
+        <section class="footer-container">
+
+            <section class="socials" aria-label="Réseaux sociaux">
+                <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/" target="_blank" aria-label="X">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+            </section>
+            <p class="footer-text">&copy; 2025 <strong>Nait Atmane Lina</strong></p>
+        </section>
+    </footer>
+
+
+
 
 </body>
