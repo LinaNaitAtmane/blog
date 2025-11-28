@@ -8,6 +8,8 @@
     <title>Nait atmane Lina </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="accueil.css">
+
     <style>
     </style>
 </head>
@@ -15,99 +17,153 @@
 <body>
     <header class="top-page">
 
-        <div class="logo">NAIT ATMANE LINA</div>
+        <h1 class="logo"> NAIT ATMANE LINA </h1>
+        <input type="checkbox" id="menu-toggle" />
+
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
 
 
-        <nav>
+        <nav role="navigation" aria-label="Navigation principale">
             <ul>
-                <li><a href="#formation.html">formation</a></li>
                 <li><a href="#projets.html">projets </a></li>
-                <li><a href="#competences.html">competences technique </a></li>
-                <li><a href="#whoiam.html" class="btn-white">who i am</a></li>
+                <li><a href="#competences.html">Compétences techniques </a></li>
+                <li><a href="#whoiam.html" class="btn-white">Who I Am</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="whoiam.html" class="page1">
+        <section id="whoiam.html" aria-labelledby="titre_about" class="page1">
             <h2> WHO I AM </h2>
             <p> Étudiante passionnée d’informatique et fascinée par les défis </p>
             <p> technologiques, je suis prête à plonger dans l’univers du code et à </p>
             <p> transformer des idées créatives en solutions innovantes. Mon objectif est </p>
             <p> de combiner rigueur mathématique et céativité pour exceller dans le domaine de l’informatique </p>
         </section>
-        <h1> competences</h1>
-        <section id="competences.html" class="grid">
+        <h1>Compétences </h1>
+        <section id="competences.html" aria-labelledby="titre-competences" class="grid">
             <article class="card">
-                <figure><img class="card__thumb" src="./image/Screenshot 2025-10-16 164729.png" alt="Aperçu projet">
+                <figure role="img" aria-labelledby="fig-competence1"><img class="card__thumb"
+                        src="./image/Screenshot 2025-10-16 164729.png" alt="Aperçu projet">
                 </figure>
                 <section class="card__content">
-                    <p class="premiertitre">langage informatique</p>
-                    <h3 class="deuxiemetitre">maitrise de langage C.</h3>
+                    <p class="premiertitre">Langage informatique</p>
+                    <h3 class="deuxiemetitre">Maîtrise du langage C.</h3>
                 </section>
-                <button class="fab" aria-label="En savoir plus">+</button>
+                <button class="fab" onclick="window.location.href='#c'">+</button>
             </article>
             <article class="card">
-                <figure>
+                <figure aria-labelledby="fig_competence2">
                     <img class="card__thumb" src="./image/python.svg" alt="Aperçu projet">
                 </figure>
                 <section class="card__content">
                     <p class="premiertitre">langage informatique</p>
-                    <h3 class="deuxiemetitre">maitrise de langage python.</h3>
+                    <h3 class="deuxiemetitre">Maîtrise du langage Python.</h3>
                 </section>
-                <button class="fab" aria-label="En savoir plus">+</button>
+                <button class="fab" onclick="window.location.href='#python'">+</button>
             </article>
             <article class="card">
-                <figure>
+                <figure role="img" aria-labelledby="fig_competence3">
                     <img class="card__thumb" src="./image/Power-BI-Logo.png" alt="Aperçu projet">
                 </figure>
                 <section class="card__content">
                     <p class="premiertitre">logiciel</p>
-                    <h3 class="deuxiemetitre">power BI.</h3>
+                    <h3 class="deuxiemetitre">Utilisation du logiciel Power BI.</h3>
                 </section>
-                <button class="fab" aria-label="En savoir plus">+</button>
+                <button class="fab" onclick="window.location.href='#powerbi'">+</button>
             </article>
             <article class="card">
-                <figure>
+                <figure role="img" aria-labelledby="fig_competence4">
                     <img class="card__thumb" src="./image/Microsoft-Apps.webp" alt="Aperçu projet">
                 </figure>
                 <section class="card__content">
-                    <p class="premiertitre">bureatique</p>
-                    <h3 class="deuxiemetitre">word,excel,power pont.</h3>
+                    <p class="premiertitre">bureautique</p>
+                    <h3 class="deuxiemetitre">Compétences bureautiques : Word, Excel, PowerPoint</h3>
                 </section>
-                <button class="fab" aria-label="En savoir plus">+</button>
-
+                <button class="fab" onclick="window.location.href='#bureautique'">+</button>
+            </article>
         </section>
 
-
-        </article>
-        <h1> projets</h1>
-        <section id="projets.html" class="projet">
+        <h1> Projets</h1>
+        <section id="projets.html" aria-labelledby="liste_projets" class="projet">
 
             <article class="card1">
                 <section class="card1__content">
-                    <p class="premiertitre">creation de site</p>
-                    <h3 class="deuxiemetitre">portfolio</h3>
+                    <p class="premiertitre">Création de site</p>
+                    <h3 class="deuxiemetitre">Création d’un site portfolio personnel</h3>
                 </section>
-                <button class="fab" aria-label="En savoir plus">+</button>
+                <button class="fab" onclick="window.location.href='#whoiam.html'">+</button>
             </article>
             <article class="card1">
                 <section class="card1__content">
-                    <p class="premiertitre">creation d un convertisseur </p>
-                    <h3 class="deuxiemetitre">creation d un convertisseur de bases </h3>
+                    <p class="premiertitre">Création d’un convertisseur</p>
+                    <h3 class="deuxiemetitre">Développement d’un convertisseur de bases numériques </h3>
                 </section>
-                <button class="fab" aria-label="En savoir plus">+</button>
+                <button class="fab" onclick="window.location.href='convertisseur.html'">+</button>
             </article>
             <article class="card1">
                 <section class="card1__content">
-                    <p class="premiertitre">creation d une calculatrice </p>
-                    <h3 class="deuxiemetitre">calculatrice numerique</h3>
+                    <p class="premiertitre">Création d’une calculatrice</p>
+                    <h3 class="deuxiemetitre">Conception d’une calculatrice interactive</h3>
                 </section>
-                <button class="fab" aria-label="En savoir plus">+</button>
+                <button class="fab" onclick="window.location.href='calculatrice.html'">+</button>
             </article>
-
         </section>
-        </article>
+
     </main>
+    <!-- ================== DESCRIPTION LANGAGE C ================== -->
+    <section id="c" class="competence-page">
+        <content class="competence-description">
+            <h5>Maîtrise du langage C</h5>
+            <p>
+                Le langage C est au cœur de la programmation système. Il m’a permis d’apprendre la gestion
+                de la mémoire, les pointeurs et les algorithmes fondamentaux. Grâce à lui, je comprends le
+                fonctionnement bas niveau des logiciels et peux créer des programmes performants et efficaces.
+            </p>
+            <a href="#competences.html" class="btn-retour">← Retour</a>
+        </content>
+    </section>
+
+    <!-- ================== DESCRIPTION PYTHON ================== -->
+    <section id="python" class="competence-page">
+        <content class="competence-description">
+            <h5>Langage Python</h5>
+            <p>
+                Python est un langage polyvalent que j’utilise pour l’analyse de données, le développement web
+                et l’automatisation. Sa simplicité et sa puissance me permettent de concevoir rapidement des
+                solutions innovantes et efficaces.
+            </p>
+            <a href="#competences.html" class="btn-retour">← Retour</a>
+        </content>
+    </section>
+
+    <!-- ================== DESCRIPTION POWER BI ================== -->
+    <section id="powerbi" class="competence-page">
+        <content class="competence-description">
+            <h5>Power BI</h5>
+            <p>
+                Power BI me permet de transformer des données complexes en tableaux de bord clairs et interactifs.
+                J’y crée des rapports dynamiques qui facilitent la compréhension et la prise de décision.
+            </p>
+            <a href="#competences.html" class="btn-retour">← Retour</a>
+        </content>
+    </section>
+
+    <!-- ================== DESCRIPTION BUREAUTIQUE ================== -->
+    <section id="bureautique" class="competence-page">
+        <content class="competence-description">
+            <h5>Bureautique : Word, Excel, PowerPoint</h5>
+            <p>
+                Je maîtrise la suite Microsoft Office pour rédiger, analyser et présenter efficacement des projets.
+                Word pour la mise en forme, Excel pour l’analyse et PowerPoint pour la communication visuelle.
+            </p>
+            <a href="#competences.html" class="btn-retour">← Retour</a>
+        </content>
+    </section>
+
     <footer role="contentinfo" aria-label="Pied de page">
         <section class="footer-container">
 
@@ -121,13 +177,51 @@
                 <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://x.com/" target="_blank" aria-label="X">
+                <a href="https://x.com/" target="_blank" aria-label="test">
                     <i class="fab fa-x-twitter"></i>
                 </a>
             </section>
+            <a href="contact.html" class="footer-contact">Contact ✉️</a>
+
             <p class="footer-text">&copy; 2025 <strong>Nait Atmane Lina</strong></p>
         </section>
     </footer>
+
+
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        });
+
+        document.querySelectorAll('section, .card, .card1').forEach(el => observer.observe(el));
+    </script>
+    <script>
+        window.addEventListener("scroll", function () {
+            const header = document.querySelector(".top-page");
+            if (window.scrollY > 70) {
+                header.style.height = "55px";
+            } else {
+                header.style.height = "70px";
+            }
+        });
+    </script>
+    <script>
+        // robuste: gère touch + mouse
+        document.querySelectorAll('.card, .card1, article').forEach(el => {
+            // mobile touch
+            el.addEventListener('touchstart', () => el.classList.add('pressed'), { passive: true });
+            el.addEventListener('touchend', () => el.classList.remove('pressed'));
+            el.addEventListener('touchcancel', () => el.classList.remove('pressed'));
+
+            // desktop mouse
+            el.addEventListener('mousedown', () => el.classList.add('pressed'));
+            el.addEventListener('mouseup', () => el.classList.remove('pressed'));
+            el.addEventListener('mouseleave', () => el.classList.remove('pressed'));
+        });
+    </script>
 
 
 

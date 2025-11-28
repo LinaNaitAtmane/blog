@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Convertisseur de bases numériques</title>
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --accent: #7c3aed;
+            --muted: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.03);
+            --radius: 12px;
+            --gap: 16px;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #071028 0%, #081428 60%);
+            color: #e6eef8;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #071028 0%, #081428 60%);
+            color: #e6eef8;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 980px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: var(--gap);
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.02));
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+            letter-spacing: 0.2px
+        }
+
+        header p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            align-items: center
+        }
+
+        .controls>* {
+            flex: 1
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 6px
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: var(--glass);
+            color: inherit;
+            font-size: 15px
+        }
+
+        .row {
+            display: flex;
+            gap: 12px
+        }
+
+        .row .col {
+            flex: 1
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px
+        }
+
+        button {
+            background: linear-gradient(90deg, var(--accent), #4c1d95);
+            border: none;
+            color: white;
+            padding: 10px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        button.secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--muted);
+            font-weight: 600
+        }
+
+        .result {
+            margin-top: 14px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+            font-size: 15px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            min-height: 56px
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .small {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .example {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: ui-monospace, monospace;
+            color: #dbeafe
+        }
+
+        .history {
+            max-height: 280px;
+            overflow: auto;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px
+        }
+
+        .history .item {
+            padding: 8px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.02);
+            font-size: 13px
+        }
+
+        footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--muted);
+            margin-top: 12px;
+            font-size: 13px
+        }
+
+        @media (max-width:880px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: 2
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card main">
+            <header>
+                <h1>Convertisseur de bases numériques</h1>
+                <p>Convertit un nombre (entier ou à virgule) entre deux bases (2 à 36). Interface simple et réactive.
+                </p>
+            </header>
+
+            <div style="margin-top:18px">
+                <label for="inputValue">Nombre à convertir</label>
+                <input id="inputValue" type="text" placeholder="ex : 1011.101 ou 7B.A" value="1011.101">
+            </div>
+
+            <div class="controls">
+                <div>
+                    <label for="fromBase">Base d'origine</label>
+                    <select id="fromBase"></select>
+                </div>
+                <div>
+                    <label for="toBase">Base cible</label>
+                    <select id="toBase"></select>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="convertBtn">Convertir</button>
+                <button class="secondary" id="swapBtn">Inverser</button>
+                <button class="secondary" id="clearBtn">Effacer</button>
+            </div>
+
+            <div class="result" id="result" aria-live="polite"></div>
+
+            <div style="margin-top:12px; display:flex; gap:8px; align-items:center; justify-content:flex-start">
+                <button class="secondary" id="copyBtn">Copier</button>
+                <div class="small" id="precisionWrap">Précision décimale : <input id="precision" type="number" min="1"
+                        max="50" value="12"
+                        style="width:72px; margin-left:8px; padding:6px; border-radius:8px; background:transparent; border:1px solid rgba(255,255,255,0.03)">
+                </div>
+            </div>
+        </div>
+
+        <aside class="card sidebar">
+            <div>
+                <div class="small">Exemples valides :</div>
+                <div class="example">1011.101 (base 2) → 11.625 (base 10)<br>7B.A (base 16) → 123.625 (base 10)<br>255
+                    (base 10) → FF (base 16)</div>
+            </div>
+
+            <div>
+                <div class="small">Historique</div>
+                <div class="history" id="history"></div>
+            </div>
+
+            <div class="small">Remarques :
+                <ul style="margin:6px 0 0 18px; color:var(--muted)">
+                    <li>Bases acceptées : <strong>2 à 36</strong></li>
+                    <li>Chiffres >9 sont représentés par A..Z (10..35)</li>
+                    <li>Précision fractionnaire réglable</li>
+                </ul>
+            </div>
+
+        </aside>
+
+        <footer>© Convertisseur — Exemple pédagogique</footer>
+    </div>
+
+    <script>
+        // Utility functions
+        const DIGITS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        function charToDigit(c) {
+            const up = c.toUpperCase();
+            const idx = DIGITS.indexOf(up);
+            return idx >= 0 ? idx : NaN;
+        }
+        function digitToChar(d) {
+            return DIGITS[d] || '?';
+        }
+
+        // Parse integer part using BigInt to support long integers
+        function parseIntegerToDecimalBigInt(str, base) {
+            let v = 0n;
+            const b = BigInt(base);
+            for (let ch of str) {
+                const d = BigInt(charToDigit(ch));
+                if (d < 0 || d >= b) return null; // invalid digit
+                v = v * b + d;
+            }
+            return v;
+        }
+
+        // Convert BigInt decimal integer to target base
+        function decimalBigIntToBaseString(valueBigInt, base) {
+            if (valueBigInt === 0n) return '0';
+            const b = BigInt(base);
+            let v = valueBigInt < 0 ? -valueBigInt : valueBigInt;
+            let out = '';
+            while (v > 0n) {
+                const r = v % b;
+                out = digitToChar(Number(r)) + out;
+                v = v / b;
+            }
+            if (valueBigInt < 0n) out = '-' + out;
+            return out;
+        }
+
+        // Convert fractional part (string) from base->decimal (Number)
+        function parseFractionToDecimal(fracStr, base) {
+            let sum = 0;
+            let pow = base;
+            for (let ch of fracStr) {
+                const d = charToDigit(ch);
+                if (isNaN(d) || d >= base) return NaN;
+                sum += d / pow;
+                pow *= base;
+            }
+            return sum;
+        }
+
+        // Convert decimal fractional (Number between 0 and 1) to target base string
+        function decimalFractionToBase(fracNum, base, precision) {
+            let s = '';
+            let f = fracNum;
+            for (let i = 0; i < precision && f > 0; i++) {
+                f = f * base;
+                const digit = Math.floor(f + 1e-12); // tolerance
+                s += digitToChar(digit);
+                f = f - digit;
+            }
+            return s || '0';
+        }
+
+        // Main conversion function
+        function convertNumber(inputStr, fromBase, toBase, precision = 12) {
+            if (typeof inputStr !== 'string') inputStr = String(inputStr);
+            inputStr = inputStr.trim();
+            if (!inputStr) return { error: 'Entrée vide' };
+
+            // handle sign
+            let sign = '';
+            if (inputStr[0] === '+' || inputStr[0] === '-') {
+                sign = inputStr[0];
+                inputStr = inputStr.slice(1);
+            }
+
+            const parts = inputStr.split('.');
+            if (parts.length > 2) return { error: 'Format incorrect (plusieurs points)' };
+
+            const intPart = parts[0] || '0';
+            const fracPart = parts[1] || '';
+
+            // validate digits
+            for (const ch of intPart + fracPart) {
+                if (ch === '') continue;
+                if (DIGITS.indexOf(ch.toUpperCase()) === -1) return { error: `Caractère invalide: ${ch}` };
+                if (charToDigit(ch) >= fromBase) return { error: `Le caractère ${ch} n'existe pas en base ${fromBase}` };
+            }
+
+            // integer conversion using BigInt
+            const intDecBig = intPart === '' ? 0n : parseIntegerToDecimalBigInt(intPart, fromBase);
+            if (intDecBig === null) return { error: 'Erreur lors de la conversion entière (digits invalides)' };
+            const intTarget = decimalBigIntToBaseString(intDecBig, toBase);
+
+            // fraction conversion (Number) — limited precision
+            let fracTarget = '';
+            if (fracPart.length > 0) {
+                const fracDec = parseFractionToDecimal(fracPart, fromBase);
+                if (isNaN(fracDec)) return { error: 'Erreur lors de la conversion fractionnaire' };
+                fracTarget = decimalFractionToBase(fracDec, toBase, precision);
+            }
+
+            return { result: (sign === '-' ? '-' : '') + intTarget + (fracPart.length > 0 ? '.' + fracTarget : '') };
+        }
+
+        // UI wiring
+        const fromBaseSelect = document.getElementById('fromBase');
+        const toBaseSelect = document.getElementById('toBase');
+        for (let b = 2; b <= 36; b++) {
+            const o1 = document.createElement('option'); o1.value = b; o1.textContent = b;
+            const o2 = o1.cloneNode(true);
+            fromBaseSelect.appendChild(o1);
+            toBaseSelect.appendChild(o2);
+        }
+        fromBaseSelect.value = 2; toBaseSelect.value = 10;
+
+        const inputValue = document.getElementById('inputValue');
+        const resultEl = document.getElementById('result');
+        const historyEl = document.getElementById('history');
+
+        function pushHistory(text) {
+            const it = document.createElement('div'); it.className = 'item'; it.textContent = text;
+            historyEl.prepend(it);
+            // limit history
+            while (historyEl.children.length > 30) historyEl.removeChild(historyEl.lastChild);
+        }
+
+        document.getElementById('convertBtn').addEventListener('click', () => {
+            const val = inputValue.value.trim();
+            const from = Number(fromBaseSelect.value);
+            const to = Number(toBaseSelect.value);
+            const prec = Math.max(1, Math.min(50, Number(document.getElementById('precision').value || 12)));
+            const out = convertNumber(val, from, to, prec);
+            if (out.error) { resultEl.textContent = 'Erreur: ' + out.error; resultEl.style.color = '#ffb4b4'; }
+            else { resultEl.textContent = out.result; resultEl.style.color = ''; pushHistory(`${val} (base ${from}) → ${out.result} (base ${to})`); }
+        });
+
+        document.getElementById('swapBtn').addEventListener('click', () => {
+            const t = fromBaseSelect.value; fromBaseSelect.value = toBaseSelect.value; toBaseSelect.value = t;
+            const tmp = inputValue.value; inputValue.value = resultEl.textContent || tmp;
+        });
+
+        document.getElementById('clearBtn').addEventListener('click', () => { inputValue.value = ''; resultEl.textContent = ''; });
+
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            const text = resultEl.textContent;
+            if (!text) return;
+            navigator.clipboard?.writeText(text).then(() => {
+                const old = resultEl.textContent;
+                resultEl.textContent = 'Copié !';
+                setTimeout(() => resultEl.textContent = old, 900);
+            }).catch(() => alert('Impossible de copier'));
+        });
+
+        // allow Enter key
+        inputValue.addEventListener('keydown', (e) => { if (e.key === 'Enter') document.getElementById('convertBtn').click(); });
+
+    </script>
+</body>
+
+</html>

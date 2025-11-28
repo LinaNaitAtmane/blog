@@ -6,44 +6,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nait atmane Lina </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="accueil.css">
     <style>
-
     </style>
 </head>
 
 <body>
-    <!-- La premiere section est dediee pour la barre d accueil en gris et -->
-    <section class="top-page">
-        <header>
-            <div class="logo">NAIT ATMANE LINA</div>
-        </header>
-        <main>
-            <nav>
+    <header class="top-page">
 
-                <a href="#formation.html">formation</a>
-                <a href="#projets.html">projets</a>
-                <a href="#competences.html ">competences techniques </a>
-                <a href="#who_i_am.html" class="btn-white">who i am</a>
+        <logo class="logo">NAIT ATMANE LINA</logo>
+        <input type="checkbox" id="menu-toggle" />
 
-            </nav>
-        </main>
-        <footer>
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
 
-        </footer>
 
-    </section>
-    <section class="page1">
-        <header>
+        <nav role="navigation" aria-label="Navigation principale">
+            <ul>
+                <li><a href="#projets.html">projets </a></li>
+                <li><a href="#competences.html">Compétences techniques </a></li>
+                <li><a href="#whoiam.html" class="btn-white">Who I Am</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="whoiam.html" role="region" aria-labelledby="titre-about" class="page1">
             <h2> WHO I AM </h2>
-        </header>
-        <main>
             <p> Étudiante passionnée d’informatique et fascinée par les défis </p>
             <p> technologiques, je suis prête à plonger dans l’univers du code et à </p>
             <p> transformer des idées créatives en solutions innovantes. Mon objectif est </p>
             <p> de combiner rigueur mathématique et céativité pour exceller dans le domaine de l’informatique </p>
-
-        </main>
-
-    </section>
-</body>
+        </section>

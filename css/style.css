@@ -1,66 +1,144 @@
+/* --------- :root / variables --------- */
+:root {
+  --bg-gradient: linear-gradient(180deg, #f5f5f7 0%, #e0e2e9 100%);
+  --text-dark: #2c2c2c;
+  --muted: #6b6b6b;
+  --accent: #414148;
+  --white: #ffffff;
+  --header-height-desktop: 70px;
+  --header-height-mobile: 60px;
+  --shadow-1: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --shadow-2: 0 12px 30px rgba(0, 0, 0, 0.12);
+  --radius-lg: 28px;
+  --radius-md: 12px;
+}
+
+/* --------- Reset & base --------- */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 0
 }
 
-/* -------------------- BODY -------------------- */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%
+}
+
 body {
-  background-color: #f5f5f7;
-  color: #414148;
-  line-height: 1.6;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-dark);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  /* reserve space for fixed header so anchor scroll doesn't hide content */
+  padding-top: var(--header-height-desktop);
 }
 
-/* -------------------- HEADER -------------------- */
+/* Make images responsive by default */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block
+}
+
+/* --------- Header / Nav --------- */
 .top-page {
   position: fixed;
+  inset: 0 auto auto 0;
+  /* top:0; left:0; width:100% handled below */
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px;
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
+  height: var(--header-height-desktop);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 60px;
-  z-index: 100;
+  justify-content: space-between;
+  padding: 0 48px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s ease;
+}
+
+.top-page:hover {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 /* Logo */
 .logo {
+  margin: 0;
+  padding: 0;
   color: white;
   font-weight: bold;
   font-size: 1.2rem;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-/* Navigation */
-nav ul {
+.logo:hover {
+  transform: scale(1.1);
+  color: #c5c5c5;
+}
+
+/* Nav list: horizontal on larger screens, wraps on small */
+nav[role="navigation"] ul {
   display: flex;
+  gap: 28px;
+  align-items: center;
   list-style: none;
-  gap: 35px;
+  margin: 0;
+  padding: 0;
+
 }
 
 nav a {
-  text-decoration: none;
   color: white;
-  font-weight: 500;
-  font-size: 1em;
-  transition: color 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 2px;
+  display: inline-block;
+  -webkit-tap-highlight-color: transparent;
 }
 
+nav a:focus,
 nav a:hover {
   color: #b5b5b5;
   transform: translateY(-2px);
 }
 
-/* Bouton blanc "who i am" */
+/* -------------------- ANIMATION DU TRAIT SOUS LES LIENS -------------------- */
+/* small underline animation */
+nav ul li {
+  position: relative
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--white);
+  border-radius: 6px;
+  transition: width .28s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a:focus::after {
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+/* button-like nav item */
 .btn-white {
-  padding: 6px 14px;
-  background-color: white;
+  background: var(--white);
   color: #414148;
-  border-radius: 30px;
+  padding: 6px 14px;
+  border-radius: 28px;
   font-weight: 600;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
@@ -71,65 +149,74 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-/* -------------------- SECTION WHO I AM -------------------- */
+
+/* When header gets smaller on scroll (script in HTML handles height change) */
+.top-page.shrink {
+  height: 55px;
+  padding: 0 28px
+}
+
+/* --------- Top section / hero (WHO I AM) --------- */
 .page1 {
-  text-align: center;
-  padding-top: 150px;
-  /* Espace à cause de la barre fixe */
-  padding-bottom: 60px;
-  max-width: 850px;
+  max-width: 920px;
   margin: 0 auto;
+  padding-top: 90px;
+  /* additional spacing under fixed header */
+  padding-bottom: 48px;
+  text-align: center;
   font-size: 1.1rem;
 }
 
 .page1 h2 {
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: 700;
-  color: #2c2c2c;
-  margin-bottom: 30px;
+  margin-bottom: 14px;
   text-transform: uppercase;
+  color: #2c2c2c;
 }
 
-/* -------------------- SECTION COMPETENCES -------------------- */
+.page1 p {
+  color: var(--muted);
+  font-size: 1rem;
+  margin: 6px 0
+}
+
+/* --------- Main headings --------- */
 h1 {
-  text-align: left;
-  margin-left: 100px;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 800;
+  text-align: center;
+  margin: 80px auto 32px;
   color: #414148;
-  margin-top: 60px;
-  margin-bottom: 40px;
+  max-width: 1100px;
 }
 
-/* Grille de compétences */
+/* --------- Cards / grid (Compétences) --------- */
 .grid {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  flex-wrap: nowrap;
-  /* ❌ empêche le retour à la ligne */
-  justify-content: flex-start;
-  gap: 30px;
-  overflow-x: auto;
-  /* ✅ permet le défilement horizontal si besoin */
-  padding: 20px 60px;
-  scroll-snap-type: x mandatory;
-  /* ✅ effet fluide et aligné */
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 12px 20px 40px;
+  align-items: stretch;
 }
 
-
-
+/* Each card adapts */
 .card {
   background: #fff;
   color: #111;
-  border-radius: 28px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  height: auto;
-  width: 100%;
-  max-width: 350px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  padding: 20px;
   display: flex;
+  flex: 1 1 300px;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 360px;
+
 }
 
 .card:hover {
@@ -137,17 +224,25 @@ h1 {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-
-.card__content {
-  position: static;
-  margin-top: auto;
+.card__thumb {
+  width: 100%;
+  height: 200px;
+  /* même hauteur pour toutes */
+  object-fit: contain;
+  /* garde l'image entière SANS l'étirer */
+  background: white;
+  /* évite les bords transparents */
+  padding: 10px;
+  display: block;
 }
+
+
 
 .premiertitre {
   font-size: 0.95rem;
   font-weight: 600;
-  opacity: 0.8;
   margin-bottom: 8px;
+  opacity: 0.8;
 }
 
 .deuxiemetitre {
@@ -155,33 +250,23 @@ h1 {
   line-height: 1.2;
   font-weight: 700;
   margin: 0;
+
 }
 
-
-
-.card__thumb {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: 18px;
-  margin-bottom: 16px;
-  display: block;
-}
-
-
+/* Floating action button on cards */
 .fab {
-  margin: 20px auto 0;
+  margin-top: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   display: grid;
   place-items: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
   background: #f5f5f7;
   color: #111;
-  font-size: 24px;
   border: none;
   box-shadow: 0 6px 18px rgba(0, 0, 0, .1);
   cursor: pointer;
+  font-size: 20px;
   transition: transform .2s ease, box-shadow .2s ease;
 }
 
@@ -189,7 +274,6 @@ h1 {
   transform: scale(1.05);
   box-shadow: 0 8px 22px rgba(0, 0, 0, .2);
 }
-
 
 /* c est pour l animation flottante*/
 @keyframes float {
@@ -204,115 +288,156 @@ h1 {
   }
 }
 
+
+/* --------- Projects --------- */
 .projet {
+  max-width: 1200px;
+  margin: 0 auto 40px;
   display: flex;
-  gap: 20px;
-  overflow-x: hidden;
-  /*
-  padding: 20px;*/
-  padding: 20px 0 20px 80px;
+  gap: 24px;
   flex-wrap: wrap;
-
+  justify-content: center;
+  padding: 10px 20px 40px;
 }
-
 
 .card1 {
   background: #414148;
   color: #ffffff;
-  border-radius: 28px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  height: auto;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  max-width: 360px;
   width: 100%;
-  max-width: 350px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card1:hover {
-  transform: scale(1.03);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+.card1 .premiertitre {
+  color: rgba(255, 255, 255, 0.85)
 }
 
+.card1 .deuxiemetitre {
+  color: #fff;
+  font-size: 1.4rem
+}
 
-@media (min-width: 768px) {
+/* responsive behavior for multi-column on bigger screens */
+@media (min-width:900px) {
+  .card {
+    flex: 1 1 calc(33% - 32px)
+  }
+
   .card1 {
-    flex-basis: calc(50% - 24px);
+    flex: 1 1 calc(33% - 32px)
   }
 }
 
-@media (min-width: 1200px) {
-  .card1 {
-    flex-basis: calc(33.333% - 24px);
-  }
+/* --------- Competence pages (target pseudo pages) --------- */
+.competence-page {
+  display: none;
+  min-height: calc(100vh - var(--header-height-desktop));
+  padding: 100px 18px;
+  background: linear-gradient(135deg, #f8f9fb, #e7ebf0);
+  align-items: center;
+  justify-content: center;
 }
 
-.card1__content {
-
-  position: static;
-  /* ✅ repositionne le contenu normalement */
-  margin-top: auto;
-  /* ✅ pousse le texte vers le bas si besoin */
-  color: #ffffff;
-  padding-top: 16px;
-
+.competence-page:target {
+  display: flex
 }
 
-
-h1 {
-  text-align: center;
-  /* ou center si tu préfères */
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin: 90px 0px 40px -800px;
-  /* espace au-dessus et entre le titre et les cartes */
-  color: #414148;
-
+.competence-description {
+  background: #ffffff;
+  padding: 48px;
+  max-width: 900px;
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
 }
 
-/**********/
+.competence-description h5 {
+  font-size: 2.4rem;
+  margin-bottom: 12px
+}
+
+.competence-description p {
+  font-size: 1.1rem;
+  color: #2e2e2e;
+  line-height: 1.7
+}
+
+.btn-retour {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 40px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  margin-top: 10px
+}
+
+/* --------- Footer --------- */
 footer {
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(12px);
-  padding: 30px 20px;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 50px 20px;
   text-align: center;
-  color: white;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 25px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 18px;
 }
 
-.footer-text {
-  font-size: 16px;
-  margin: 0;
-  text-align: center;
-}
-
+/* Liens des réseaux sociaux */
 footer .socials {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
 }
 
 footer .socials a {
-  font-size: 24px;
   color: white;
+  font-size: 22px;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
 footer .socials a:hover {
-  transform: translateY(-3px) scale(1.2);
-  color: #b5b5b5;
+  transform: translateY(-4px) scale(1.2);
+  color: #cfcfcf;
+}
+
+/* Texte du footer */
+.footer-text {
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  color: #dddddd;
+  opacity: 0.9;
+}
+
+/* Ligne séparatrice au-dessus du texte */
+.footer-text::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 12px auto 18px;
+  border-radius: 2px;
+}
+
+footer:hover {
+  box-shadow: 0 -6px 20px rgba(255, 255, 255, 0.08);
 }
 
 figure {
@@ -329,4 +454,402 @@ figure img {
 #projets\.html {
   margin-bottom: 60px;
   /* espace entre les cartes et le footer */
+}
+
+/* --------- Forms / contact --------- */
+.contact-form {
+  max-width: 720px;
+  margin: 22px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%
+}
+
+.contact-form button {
+  margin-top: 10px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+footer a,
+.footer-contact {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+footer a:hover,
+.footer-contact:hover {
+  color: #cfcfcf !important;
+}
+
+/* --------- Animation on reveal (intersection observer toggles .visible) --------- */
+section,
+.card,
+.card1 {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease
+}
+
+section.visible,
+.card.visible,
+.card1.visible {
+  opacity: 1;
+  transform: none
+}
+
+/* --------- Accessibility / touch targets --------- */
+/* ensure links & buttons are comfortably tappable */
+a,
+button {
+  min-height: 36px
+}
+
+nav a {
+  padding: 10px 6px;
+  border-radius: 6px
+}
+
+/* --------- RESPONSIVE TWEAKS: Mobile first adjustments --------- */
+@media (max-width: 1024px) {
+  :root {
+    --header-height-desktop: 70px
+  }
+
+  body {
+    padding-top: var(--header-height-desktop)
+  }
+
+  .page1 {
+    padding-top: 88px
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 768px) {
+
+  /* header smaller, less padding */
+  :root {
+    --header-height-desktop: 60px
+  }
+
+  body {
+    padding-top: var(--header-height-desktop)
+  }
+
+  .top-page {
+    height: var(--header-height-desktop);
+    padding: 0 18px
+  }
+
+  .logo {
+    font-size: 0.98rem
+  }
+
+  nav ul {
+    gap: 14px
+  }
+
+  nav a {
+    font-size: 0.92rem
+  }
+
+  .page1 h2 {
+    font-size: 2.2rem
+  }
+
+  h1 {
+    font-size: 1.9rem;
+    margin: 56px 12px 24px
+  }
+
+  .grid {
+    padding: 12px
+  }
+
+  .card,
+  .card1 {
+    max-width: 92%;
+    min-width: auto
+  }
+
+  .card__thumb {
+    aspect-ratio: 16/9
+  }
+
+  .competence-description {
+    padding: 28px
+  }
+
+  .competence-description h5 {
+    font-size: 1.6rem
+  }
+
+  .competence-description p {
+    font-size: 1rem;
+    line-height: 1.6
+  }
+
+  footer {
+    padding: 28px
+  }
+}
+
+/* Small phones */
+@media (max-width: 420px) {
+  .logo {
+    font-size: 0.92rem
+  }
+
+  nav ul {
+    gap: 8px
+  }
+
+  nav a {
+    font-size: 0.82rem;
+    padding: 8px 4px
+  }
+
+  .page1 {
+    padding-top: 72px;
+    padding-bottom: 28px
+  }
+
+  .page1 h2 {
+    font-size: 1.9rem
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin: 44px 8px 20px
+  }
+
+  .deuxiemetitre {
+    font-size: 1.25rem
+  }
+
+  .fab {
+    width: 40px;
+    height: 40px;
+    font-size: 18px
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 18px
+  }
+
+  .card1 {
+    padding: 16px;
+    border-radius: 18px
+  }
+
+  .competence-description {
+    padding: 20px
+  }
+}
+
+/* Very large screens slight polish */
+@media (min-width: 1400px) {
+
+  .grid,
+  .projet {
+    padding-left: 40px;
+    padding-right: 40px
+  }
+
+  .card {
+    max-width: 380px
+  }
+
+  .card1 {
+    max-width: 380px
+  }
+}
+
+/* --------- Helpful utilities (optional) --------- */
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.hide-mobile {
+  display: inline
+}
+
+@media (max-width:420px) {
+  .hide-mobile {
+    display: none
+  }
+}
+
+/* ==== FORCER 4 CARTES SUR UNE LIGNE ==== */
+.grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+  justify-items: center;
+}
+
+/* ==== MÊME HAUTEUR POUR TOUTES LES CARTES ==== */
+.card {
+  height: 480px !important;
+  max-width: 100% !important;
+}
+
+/* ==== MÊME TAILLE POUR LES IMAGES ==== */
+.card__thumb {
+  width: 100%;
+  height: 200px !important;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .card {
+    height: auto !important;
+  }
+}
+
+/* =========================
+   Effet "appuie/agrandit" robuste (CSS)
+   ========================= */
+
+/* base : transition fluide, origine centrée */
+.card,
+.card1,
+article {
+  transition: transform 180ms cubic-bezier(.2, .9, .2, 1), box-shadow 180ms ease !important;
+  transform-origin: center center !important;
+  will-change: transform !important;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+/* hover desktop */
+.card:hover,
+.card1:hover,
+article:hover {
+  transform: scale(1.03) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14) !important;
+}
+
+/* active (clic/tap) — CSS fallback */
+.card:active,
+.card1:active,
+article:active {
+  transform: scale(1.09) !important;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* état clavier / accessible */
+.card:focus,
+.card1:focus,
+article:focus {
+  outline: none;
+  transform: scale(1.04) !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* classe appliquée par JS (voir plus bas) pour un effet garanti sur mobile */
+.card.pressed,
+.card1.pressed,
+article.pressed {
+  transform: scale(1.09) !important;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* Cacher la checkbox */
+#menu-toggle {
+  display: none;
+}
+
+/* Hamburger base */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  z-index: 999;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+/* Mobile uniquement */
+@media (max-width: 820px) {
+
+  /* afficher hamburger */
+  .hamburger {
+    display: flex;
+  }
+
+  /* cacher la nav */
+  nav[role="navigation"] {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    text-align: center;
+    position: absolute;
+    top: var(--header-height-desktop);
+    left: 0;
+    padding: 20px 0;
+  }
+
+  /* afficher nav quand case cochée */
+  #menu-toggle:checked~nav[role="navigation"] {
+    display: flex;
+  }
+
+  /* Animation des barres (hamburger → X) */
+  #menu-toggle:checked+.hamburger span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  #menu-toggle:checked+.hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  #menu-toggle:checked+.hamburger span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* liens */
+  nav[role="navigation"] ul {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  nav[role="navigation"] a {
+    font-size: 1.2rem;
+    padding: 10px 0;
+  }
 }
