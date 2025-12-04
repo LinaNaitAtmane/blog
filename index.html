@@ -6,9 +6,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nait atmane Lina </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style"
+        onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </noscript>
+
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="accueil.css">
+
 
     <style>
     </style>
@@ -18,7 +23,7 @@
     <header class="top-page">
 
         <h1 class="logo"> NAIT ATMANE LINA </h1>
-        <input type="checkbox" id="menu-toggle" />
+        <input type="checkbox" id="menu-toggle">
 
         <label for="menu-toggle" class="hamburger">
             <span></span>
@@ -37,26 +42,27 @@
     </header>
     <main>
         <section id="whoiam.html" aria-labelledby="titre_about" class="page1">
-            <h2> WHO I AM </h2>
+            <h2 id="titre_about"> WHO I AM </h2>
             <p> Étudiante passionnée d’informatique et fascinée par les défis </p>
             <p> technologiques, je suis prête à plonger dans l’univers du code et à </p>
             <p> transformer des idées créatives en solutions innovantes. Mon objectif est </p>
             <p> de combiner rigueur mathématique et céativité pour exceller dans le domaine de l’informatique </p>
         </section>
-        <h1>Compétences </h1>
+        <h1 id="titre-competences">Compétences </h1>
         <section id="competences.html" aria-labelledby="titre-competences" class="grid">
+            <h2 class="visually-hidden">Compétences techniques</h2>
             <article class="card">
-                <figure role="img" aria-labelledby="fig-competence1"><img class="card__thumb"
-                        src="./image/Screenshot 2025-10-16 164729.png" alt="Aperçu projet">
+                <figure><img class="card__thumb" src="./image/Screenshot_2025-10-16_164729.png" alt="Aperçu projet">
                 </figure>
                 <section class="card__content">
                     <p class="premiertitre">Langage informatique</p>
                     <h3 class="deuxiemetitre">Maîtrise du langage C.</h3>
                 </section>
                 <button class="fab" onclick="window.location.href='#c'">+</button>
+                <h3 class="visually-hidden">Titre interne</h3>
             </article>
             <article class="card">
-                <figure aria-labelledby="fig_competence2">
+                <figure>
                     <img class="card__thumb" src="./image/python.svg" alt="Aperçu projet">
                 </figure>
                 <section class="card__content">
@@ -64,9 +70,10 @@
                     <h3 class="deuxiemetitre">Maîtrise du langage Python.</h3>
                 </section>
                 <button class="fab" onclick="window.location.href='#python'">+</button>
+                <h3 class="visually-hidden">Titre interne</h3>
             </article>
             <article class="card">
-                <figure role="img" aria-labelledby="fig_competence3">
+                <figure>
                     <img class="card__thumb" src="./image/Power-BI-Logo.png" alt="Aperçu projet">
                 </figure>
                 <section class="card__content">
@@ -74,9 +81,10 @@
                     <h3 class="deuxiemetitre">Utilisation du logiciel Power BI.</h3>
                 </section>
                 <button class="fab" onclick="window.location.href='#powerbi'">+</button>
+                <h3 class="visually-hidden">Titre interne</h3>
             </article>
             <article class="card">
-                <figure role="img" aria-labelledby="fig_competence4">
+                <figure>
                     <img class="card__thumb" src="./image/Microsoft-Apps.webp" alt="Aperçu projet">
                 </figure>
                 <section class="card__content">
@@ -84,18 +92,20 @@
                     <h3 class="deuxiemetitre">Compétences bureautiques : Word, Excel, PowerPoint</h3>
                 </section>
                 <button class="fab" onclick="window.location.href='#bureautique'">+</button>
+                <h3 class="visually-hidden">Titre interne</h3>
             </article>
         </section>
 
-        <h1> Projets</h1>
+        <h1 id="liste_projets"> Projets</h1>
         <section id="projets.html" aria-labelledby="liste_projets" class="projet">
-
+            <h2 class="visually-hidden">Liste des projets</h2>
             <article class="card1">
                 <section class="card1__content">
                     <p class="premiertitre">Création de site</p>
                     <h3 class="deuxiemetitre">Création d’un site portfolio personnel</h3>
                 </section>
                 <button class="fab" onclick="window.location.href='#whoiam.html'">+</button>
+                <h3 class="visually-hidden">Titre interne</h3>
             </article>
             <article class="card1">
                 <section class="card1__content">
@@ -103,6 +113,7 @@
                     <h3 class="deuxiemetitre">Développement d’un convertisseur de bases numériques </h3>
                 </section>
                 <button class="fab" onclick="window.location.href='convertisseur.html'">+</button>
+                <h3 class="visually-hidden">Titre interne</h3>
             </article>
             <article class="card1">
                 <section class="card1__content">
@@ -110,13 +121,15 @@
                     <h3 class="deuxiemetitre">Conception d’une calculatrice interactive</h3>
                 </section>
                 <button class="fab" onclick="window.location.href='calculatrice.html'">+</button>
+                <h3 class="visually-hidden">Compétences</h3>
             </article>
         </section>
 
     </main>
     <!-- ================== DESCRIPTION LANGAGE C ================== -->
     <section id="c" class="competence-page">
-        <content class="competence-description">
+        <h2 class="visually-hidden">Compétence C</h2>
+        <section class="competence-description">
             <h5>Maîtrise du langage C</h5>
             <p>
                 Le langage C est au cœur de la programmation système. Il m’a permis d’apprendre la gestion
@@ -124,12 +137,13 @@
                 fonctionnement bas niveau des logiciels et peux créer des programmes performants et efficaces.
             </p>
             <a href="#competences.html" class="btn-retour">← Retour</a>
-        </content>
+        </section>
     </section>
 
     <!-- ================== DESCRIPTION PYTHON ================== -->
     <section id="python" class="competence-page">
-        <content class="competence-description">
+        <h2 class="visually-hidden">Compétence Python</h2>
+        <section class="competence-description">
             <h5>Langage Python</h5>
             <p>
                 Python est un langage polyvalent que j’utilise pour l’analyse de données, le développement web
@@ -137,36 +151,38 @@
                 solutions innovantes et efficaces.
             </p>
             <a href="#competences.html" class="btn-retour">← Retour</a>
-        </content>
+        </section>
     </section>
 
     <!-- ================== DESCRIPTION POWER BI ================== -->
     <section id="powerbi" class="competence-page">
-        <content class="competence-description">
+        <h2 class="visually-hidden">Compétence Power BI</h2>
+        <section class="competence-description">
             <h5>Power BI</h5>
             <p>
                 Power BI me permet de transformer des données complexes en tableaux de bord clairs et interactifs.
                 J’y crée des rapports dynamiques qui facilitent la compréhension et la prise de décision.
             </p>
             <a href="#competences.html" class="btn-retour">← Retour</a>
-        </content>
+        </section>
     </section>
 
     <!-- ================== DESCRIPTION BUREAUTIQUE ================== -->
     <section id="bureautique" class="competence-page">
-        <content class="competence-description">
+        <h2 class="visually-hidden">Compétence Bureautique</h2>
+        <section class="competence-description">
             <h5>Bureautique : Word, Excel, PowerPoint</h5>
             <p>
                 Je maîtrise la suite Microsoft Office pour rédiger, analyser et présenter efficacement des projets.
                 Word pour la mise en forme, Excel pour l’analyse et PowerPoint pour la communication visuelle.
             </p>
             <a href="#competences.html" class="btn-retour">← Retour</a>
-        </content>
+        </section>
     </section>
 
-    <footer role="contentinfo" aria-label="Pied de page">
+    <footer aria-label="Pied de page">
         <section class="footer-container">
-
+            <h2 class="visually-hidden">Informations du pied de page</h2>
             <section class="socials" aria-label="Réseaux sociaux">
                 <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">
                     <i class="fab fa-facebook-f"></i>

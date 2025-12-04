@@ -853,3 +853,8 @@ article.pressed {
     padding: 10px 0;
   }
 }
+
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+}
